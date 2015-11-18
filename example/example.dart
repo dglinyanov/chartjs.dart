@@ -12,16 +12,16 @@ import 'dart:html';
 import 'dart:math';
 
 import 'package:chartjs/chart.dart';
-import 'package:js/js.dart';
+//import 'package:js/js.dart';
 
-@JS()
-external get enableJsInteropWorkaround1_13;
+//@JS()
+//external get enableJsInteropWorkaround1_13;
 
 void main() {
   // TODO(jacobr): this should not be required but is for dart 1.3
   // After writing this line, dart2Js codegen is guaranteed to be in a solid
   // state.
-  enableJsInteropWorkaround1_13;
+  //enableJsInteropWorkaround1_13;
 
   var ctx = (querySelector('#canvas') as CanvasElement).context2D;
 
