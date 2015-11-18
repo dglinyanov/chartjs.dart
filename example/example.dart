@@ -11,14 +11,23 @@ library chartjs.example;
 import 'dart:html';
 import 'dart:math';
 
-import 'package:chartjs/chartjs.dart';
+import 'package:chartjs/chart.dart';
+import 'package:js/js.dart';
+
+@JS()
+external get enableJsInteropWorkaround1_13;
 
 void main() {
+  // TODO(jacobr): this should not be required but is for dart 1.3
+  // After writing this line, dart2Js codegen is guaranteed to be in a solid
+  // state.
+  enableJsInteropWorkaround1_13;
+
   var ctx = (querySelector('#canvas') as CanvasElement).context2D;
 
   var rnd = new Random();
 
-  var data = new Data(labels: [
+  var data = new LinearChartData(labels: <String>[
     "January",
     "February",
     "March",
@@ -26,8 +35,8 @@ void main() {
     "May",
     "June",
     "July"
-  ], datasets: <DataSet>[
-    new DataSet(
+  ], datasets: <ChartDataSet>[
+    new ChartDataSet(
         label: "My First dataset",
         fillColor: "rgba(220,220,220,0.2)",
         strokeColor: "rgba(220,220,220,1)",
@@ -44,7 +53,7 @@ void main() {
           rnd.nextInt(100),
           rnd.nextInt(100)
         ]),
-    new DataSet(
+    new ChartDataSet(
         label: "My Second dataset",
         fillColor: "rgba(151,187,205,0.2)",
         strokeColor: "rgba(151,187,205,1)",
@@ -63,5 +72,5 @@ void main() {
         ])
   ]);
 
-  new Chart(ctx).Line(data, new Options(responsive: true));
+  new Chart(ctx).Line(data, new LineChartOptions(pointDotRadius: 10));
 }
