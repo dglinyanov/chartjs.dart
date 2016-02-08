@@ -77,6 +77,12 @@ class CircularChartData {
 
 @anonymous
 @JS()
+class Defaults {
+  external ChartSettings get global;
+}
+
+@anonymous
+@JS()
 class ChartSettings {
   external factory ChartSettings(
       {bool animation,
@@ -501,6 +507,6 @@ class Chart {
       [PieChartOptions options]);
 
   external Chart(CanvasRenderingContext2D context);
-  external static dynamic get defaults;
-  external static set defaults(dynamic v);
+  external static Defaults get defaults;
+  external static set defaults(Defaults v);
 }

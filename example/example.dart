@@ -64,5 +64,12 @@ void main() {
         ])
   ]);
 
+  Chart.defaults.global.onAnimationProgress = allowInterop((_, __) {
+    print("Animation progress: $_ $__");
+  });
+
+  Chart.defaults.global.onAnimationComplete = allowInterop(() {
+    print("Animation complete");
+  });
   new Chart(ctx).Line(data, new LineChartOptions(pointDotRadius: 10));
 }
